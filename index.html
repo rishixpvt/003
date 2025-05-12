@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter Password</title>
+  <style>
+    * {
+      box-sizing: border-box; /* ✅ Apply globally to avoid layout issues */
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #4b2e83;
+    }
+
+    input[type="password"] {
+      padding: 12px;
+      width: 100%;
+      border: 2px solid rgb(34, 171, 209);
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #205ec9;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #444;
+      margin-top: 12px;
+    }
+
+    .feedback {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter the Password</h1>
+    <h4>Please, Reed it all it took me money and 5 days effort to code and host it!"</h4>
+    <input type="password" id="passwordInput" placeholder="Your secret password..." />
+    <button onclick="checkPassword()">Unlock</button>
+    <div class="feedback" id="feedback"></div>
+    <div class="hint">Hint: My Birthday! (Eg.: May29)</div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('passwordInput');
+    const feedback = document.getElementById('feedback');
+    const correctPassword = "November25";
+
+    function checkPassword() {
+      const input = passwordInput.value.trim();
+
+      if (input.toLowerCase() === correctPassword.toLowerCase()) {
+        localStorage.setItem("unlocked", "true");
+        window.location.href = "message.html";
+      } else {
+        feedback.textContent = "Oops! Wrong password. Ask me if u can't find out!";
+      }
+    }
+
+    // ✅ Allow Enter key to submit
+    passwordInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
